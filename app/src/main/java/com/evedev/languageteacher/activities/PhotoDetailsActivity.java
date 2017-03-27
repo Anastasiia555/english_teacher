@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.evedev.languageteacher.R;
 
@@ -21,7 +20,7 @@ public class PhotoDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_details);
+        setContentView(R.layout.activity_image_details);
 
         Uri imageUri = getIntent().getParcelableExtra("imageUri");
         ImageView imageView = (ImageView) findViewById(R.id.photo);

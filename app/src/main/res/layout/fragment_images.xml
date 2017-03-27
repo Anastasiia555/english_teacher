@@ -14,7 +14,7 @@
         android:textSize="20sp" />
 
     <GridView
-        android:id="@+id/photo_grid_view"
+        android:id="@+id/image_grid_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

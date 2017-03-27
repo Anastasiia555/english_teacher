@@ -9,6 +9,10 @@ import com.evedev.languageteacher.R;
 import java.util.Set;
 
 /**
+ * Service for work with SharedPreferences.
+ * Saves and loads fields from local store.
+ *
+ * @author Anastasia.
  * @since 3/27/17.
  */
 public class LocalStore {
@@ -22,6 +26,19 @@ public class LocalStore {
         sharedPreferences = context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
     }
 
+    public void saveIsRegistered(boolean isRegistered){
+        String isRegisteredKey = context.getString(R.string.is_registered_key);
+        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+        sharedPreferencesEditor.putBoolean(isRegisteredKey, isRegistered);
+        sharedPreferencesEditor.apply();
+    }
+
+    public boolean loadIsRegistered(){
+        String isRegisteredKey = context.getString(R.string.is_registered_key);
+        boolean isRegisteredValue = Boolean.parseBoolean(context.getString(R.string.is_registered_value));
+        return sharedPreferences.getBoolean(isRegisteredKey, isRegisteredValue);
+    }
+
     public void saveName(String name) {
         String nameKey = context.getString(R.string.name_key);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
@@ -31,8 +48,8 @@ public class LocalStore {
 
     public String loadName() {
         String namePreferencesKey = context.getString(R.string.name_key);
-        String defaultName = context.getString(R.string.name_value);
-        return sharedPreferences.getString(namePreferencesKey, defaultName);
+        String nameValue = context.getString(R.string.name_value);
+        return sharedPreferences.getString(namePreferencesKey, nameValue);
     }
 
     public void saveMotivation(String motivation) {
@@ -60,5 +77,4 @@ public class LocalStore {
         String imagesKey = context.getString(R.string.images_key);
         return sharedPreferences.getStringSet(imagesKey, null);
     }
-
 }

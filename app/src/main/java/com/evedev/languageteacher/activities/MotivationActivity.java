@@ -15,9 +15,10 @@ import com.evedev.languageteacher.R;
 import com.evedev.languageteacher.services.LocalStore;
 
 /**
- * #2
+ * Second part of registration chain.
+ * In this activity user fills his motivation to study English.
  *
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * @author Anastasia.
  * @since 2/16/17.
  */
 public class MotivationActivity extends AppCompatActivity {

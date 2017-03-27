@@ -2,6 +2,7 @@ package com.evedev.languageteacher.adapters;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
  * @author Alexander Eveler, alexander.eveler@gmail.com
  * @since 2/28/17.
  */
-public class PhotoGridViewAdapter extends ArrayAdapter {
+public class ImageGridViewAdapter extends ArrayAdapter {
 
     private Activity activity;
     private int layoutResourceId;
@@ -40,7 +41,7 @@ public class PhotoGridViewAdapter extends ArrayAdapter {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-    public PhotoGridViewAdapter(Activity activity, int layoutResourceId, ArrayList<GridItem> items) {
+    public ImageGridViewAdapter(Activity activity, int layoutResourceId, ArrayList<GridItem> items) {
         super(activity, layoutResourceId, items);
         this.layoutResourceId = layoutResourceId;
         this.activity = activity;
@@ -51,7 +52,7 @@ public class PhotoGridViewAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
 
-        if (items.get(items.size() - position - 1) instanceof GridButtonItem) {
+        if (items.get(position) instanceof GridButtonItem) {
             LayoutInflater layoutInflater = LayoutInflater.from(activity);
             view = layoutInflater.inflate(R.layout.item_add_button_grid, parent, false);
             Button addImageButton = (Button) view.findViewById(R.id.add_button);
@@ -64,7 +65,7 @@ public class PhotoGridViewAdapter extends ArrayAdapter {
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(layoutResourceId, parent, false);
             ImageView imageView = (ImageView) view.findViewById(R.id.image);
-            Uri itemUri = items.get(items.size() - position - 1).getImageUri();
+            Uri itemUri = items.get(position).getImageUri();
             try {
                 ContentResolver contentResolver = activity.getContentResolver();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(contentResolver, itemUri);
@@ -100,7 +101,8 @@ public class PhotoGridViewAdapter extends ArrayAdapter {
                 readPermission == PackageManager.PERMISSION_GRANTED) {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
-            activity.startActivityForResult(photoPickerIntent, 1);
+            Fragment fragment = activity.getFragmentManager().findFragmentById(R.id.image_fragment);
+            fragment.startActivityForResult(photoPickerIntent, 1);
         }
     }
 }

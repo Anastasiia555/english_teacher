@@ -39,6 +39,7 @@
     <string name="words_per_visit_key">wordsPerVisit</string>
     <string name="words_per_visit_value">0</string>
 
+    <!-- Is Registered -->
     <string name="is_registered_key">isRegistered</string>
     <string name="is_registered_value">false</string>
 </resources>

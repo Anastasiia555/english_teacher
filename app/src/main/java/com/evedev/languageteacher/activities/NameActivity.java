@@ -14,14 +14,21 @@ import com.evedev.languageteacher.R;
 import com.evedev.languageteacher.services.LocalStore;
 
 /**
- * #1
+ * First part of registration chain.
+ * In this activity user fills his name.
+ *
+ * @author Anastasia.
  * @since 2/16/17.
  */
 public class NameActivity extends AppCompatActivity {
 
     private static final String TAG = "NameActivity";
 
+    // services
     private LocalStore localStore;
+
+    // view's elements
+    private EditText nameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +38,8 @@ public class NameActivity extends AppCompatActivity {
         // init services
         localStore = new LocalStore(this);
 
-        // init view elements
-        final EditText editText = (EditText) findViewById(R.id.name_edit_text);
+        // init view's elements
+        nameText = (EditText) findViewById(R.id.name_edit_text);
 
         // button's listeners
         Button previousButton = (Button) findViewById(R.id.previous_button);
@@ -43,7 +50,7 @@ public class NameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String name = editText.getText().toString();
+                String name = nameText.getText().toString();
                 Activity activity = NameActivity.this;
 
                 if (!name.equals("")) {
