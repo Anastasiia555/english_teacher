@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">English Teacher</string>
+
+    <!-- Shared Preferences -->
+    <string name="preferences_settings_file">Settings</string>
+
+    <!-- Name -->
+    <string name="name_key">name</string>
+    <string name="name_value">Unknown</string>
+
+    <!-- Motivation -->
+    <string name="motivation_key">motivation</string>
+    <string name="motivation_value">Motivation is unknown</string>
+
+    <!-- Images -->
+    <string name="images_key">images</string>
+
+    <!-- Words per day -->
+    <string name="words_per_day_key">wordsPerDay</string>
+    <string name="words_per_day_value">50</string>
+
+    <!-- Way to learning (by Hours)-->
+    <string name="way_to_learn_key">wayToLearn</string>
+    <string name="way_to_learn_value">1</string>
+
+    <!-- Way to learning (by Hours)-->
+    <string name="words_per_hour_key">wordsPerHour</string>
+    <string name="words_per_hour_value">10</string>
+    <string name="get_up_hour_key">getUpHourValue</string>
+    <string name="get_up_hour_value">7</string>
+    <string name="get_up_minute_key">getUpMinuteValue</string>
+    <string name="get_up_minute_value">0</string>
+    <string name="go_bed_hour_key">goBedHourValue</string>
+    <string name="go_bed_hour_value">22</string>
+    <string name="go_bed_minute_key">goBedMinuteValue</string>
+    <string name="go_bed_minute_value">0</string>
+
+    <!-- Way to learning (by Hours)-->
+    <string name="words_per_visit_key">wordsPerVisit</string>
+    <string name="words_per_visit_value">0</string>
+
+    <string name="is_registered_key">isRegistered</string>
+    <string name="is_registered_value">false</string>
+</resources>

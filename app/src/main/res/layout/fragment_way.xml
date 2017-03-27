@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:stretchColumns="1">
+
+        <TextView
+            android:id="@+id/choose_way_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Choose way to learning"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TabHost
+            android:id="@+id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/words_by_time_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/words_by_hour_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="How many words per hour you want to learn?"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <NumberPicker
+                            android:id="@+id/words_per_hour_picker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants" />
+
+                        <TextView
+                            android:id="@+id/when_get_up_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="When you get up?"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <NumberPicker
+                                android:id="@+id/get_up_hour_picker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:descendantFocusability="blocksDescendants" />
+
+                            <NumberPicker
+                                android:id="@+id/get_up_minute_picker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:descendantFocusability="blocksDescendants" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/when_go_bed_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="When you go bed?"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <NumberPicker
+                                android:id="@+id/go_bed_hour_picker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:descendantFocusability="blocksDescendants" />
+
+                            <NumberPicker
+                                android:id="@+id/go_bed_minute_picker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:descendantFocusability="blocksDescendants" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/words_per_visit_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/words_per_visit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="How many words per one visit you want to learn?"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <NumberPicker
+                            android:id="@+id/words_per_visit_picker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:descendantFocusability="blocksDescendants" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+    </LinearLayout>
+</ScrollView>

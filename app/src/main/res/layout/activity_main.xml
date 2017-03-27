@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/fragment_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:stretchColumns="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/header"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:text="Learn 6 new words!"
+                android:textSize="15pt" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:background="@drawable/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="10pt"
+                    android:textColor="@color/black"
+                    android:text="Words learned" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_span="5"
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="" />
+
+                        <TextView
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="old" />
+
+                        <TextView
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="new" />
+
+                        <TextView
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_span="5"
+                            android:gravity="left"
+                            android:text="Last week"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/old_words_last_week"
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="253" />
+
+                        <TextView
+                            android:id="@+id/new_words_last_week"
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="96" />
+
+                        <ImageView
+                            android:id="@+id/check_words_last_week"
+                            android:layout_gravity="left"
+                            android:adjustViewBounds="true"
+                            android:src="@android:drawable/checkbox_on_background" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_span="5"
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="Yesterday"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/old_words_yesterday"
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="46" />
+
+                        <TextView
+                            android:id="@+id/new_words_yesterday"
+                            android:gravity="left"
+                            android:textSize="10pt"
+                            android:textColor="@color/black"
+                            android:text="4" />
+
+                        <ImageView
+                            android:id="@+id/check_words_yesterday"
+                            android:layout_gravity="left"
+                            android:adjustViewBounds="true"
+                            android:src="@android:drawable/checkbox_off_background" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/header"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:text="Only 26 words remaining"
+                android:textSize="15pt" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/fragment_bottom_navigation" />
+</LinearLayout>

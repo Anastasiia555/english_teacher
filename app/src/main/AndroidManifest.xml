@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.evedev.languageteacher">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light">
+
+        <activity
+            android:name=".activities.LoadingActivity"
+            android:label="Loading"
+            android:theme="@style/ToolbarTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.NameActivity"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.MotivationActivity"
+            android:label="Motivation"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.ImagesActivity"
+            android:label="Photos"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.WordsActivity"
+            android:label="Words"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.WayActivity"
+            android:label="Way"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.AboutActivity"
+            android:label="About"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.PhotoDetailsActivity"
+            android:label="Main"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="Main"
+            android:theme="@style/ToolbarTheme" />
+
+        <activity
+            android:name=".activities.UserActivity"
+            android:label="User Settings"
+            android:theme="@style/ActionBarTheme" />
+    </application>
+
+</manifest>
