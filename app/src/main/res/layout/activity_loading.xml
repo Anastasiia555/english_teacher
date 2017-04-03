@@ -2,16 +2,35 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/frame_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:scaleType="centerCrop">
+    android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:alpha="0.9"
+        android:contentDescription="Image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/germany" />
+
+    <ImageView
+        android:id="@+id/logo_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="Image"
         android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/motivation_text"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

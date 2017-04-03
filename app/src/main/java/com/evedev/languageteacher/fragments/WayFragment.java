@@ -13,7 +13,9 @@ import android.widget.TabHost;
 import com.evedev.languageteacher.R;
 
 /**
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * Controller for Way Fragment.
+ *
+ * @author Anastasia.
  * @since 3/25/17.
  */
 public class WayFragment extends Fragment {
@@ -23,8 +25,10 @@ public class WayFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "start onCreateView");
         View view = inflater.inflate(R.layout.fragment_way, container, true);
 
+        // TODO: 4/3/17 calculate max word
         TabHost tabHost = (TabHost) view.findViewById(R.id.tabhost);
         tabHost.setup();
 
@@ -65,8 +69,6 @@ public class WayFragment extends Fragment {
         NumberPicker wordsPerVisitPicker = (NumberPicker) view.findViewById(R.id.words_per_visit_picker);
         wordsPerVisitPicker.setMaxValue(100);
         wordsPerVisitPicker.setMinValue(0);
-
-        Log.d(TAG, "Initialized");
 
         return view;
     }

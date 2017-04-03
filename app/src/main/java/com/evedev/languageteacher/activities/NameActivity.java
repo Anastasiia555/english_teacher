@@ -34,6 +34,7 @@ public class NameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
+        Log.d(TAG, "start onCreate");
 
         // init services
         localStore = new LocalStore(this);

@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="10"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:stretchColumns="1">
 
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Choose way to learning"
+            android:text="@string/activity_way_choose_way_text"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -52,22 +52,28 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
-                            android:text="How many words per hour you want to learn?"
+                            android:text="@string/activity_way_how_many_words_per_hour_text"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
-                        <NumberPicker
-                            android:id="@+id/words_per_hour_picker"
+                        <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:descendantFocusability="blocksDescendants" />
+                            android:layout_height="wrap_content">
+
+                            <NumberPicker
+                                android:id="@+id/words_per_hour_picker"
+                                android:layout_width="130dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_height="wrap_content"
+                                android:descendantFocusability="blocksDescendants" />
+                        </FrameLayout>
 
                         <TextView
                             android:id="@+id/when_get_up_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
-                            android:text="When you get up?"
+                            android:text="@string/activity_way_when_you_get_up_text"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -95,7 +101,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
-                            android:text="When you go bed?"
+                            android:text="@string/activity_way_when_you_go_bed_text"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -130,7 +136,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
-                            android:text="How many words per one visit you want to learn?"
+                            android:text="@string/activity_way_how_many_words_per_visit_text"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 

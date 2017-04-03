@@ -2,9 +2,8 @@ package com.evedev.languageteacher.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,16 +11,20 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.evedev.languageteacher.R;
 import com.evedev.languageteacher.services.LocalStore;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
+import jp.wasabeef.blurry.Blurry;
 
 /**
  * Checks data in local store(SharedPreferences).
@@ -39,43 +42,61 @@ public class LoadingActivity extends AppCompatActivity {
 
     private static final String TAG = "MotivationActivity";
 
-    // services
-    private LocalStore localStore;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
         // init services
-        localStore = new LocalStore(this);
+        LocalStore localStore = new LocalStore(this);
 
         // init view's elements
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.getIndeterminateDrawable()
                 .setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.MULTIPLY);
 
+        // init background
+        ImageView backgroundImage = (ImageView) findViewById(R.id.background_image);
+        Set<String> imageUris = localStore.loadImages();
+        if (imageUris.size() > 0) {
+            int rand = (int) (Math.random() * imageUris.size());
+            List<String> uriList = new ArrayList<String>(imageUris);
+            Uri imageUri = Uri.parse(uriList.get(rand));
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                Blurry.with(this)
+                        .radius(3)
+                        .sampling(5)
+                        .color(Color.argb(100, 0, 0, 0))
+                        .from(bitmap)
+                        .into(backgroundImage);
+            } catch (IOException e) {
+                Log.e(TAG, e.getMessage(), e.getCause());
+                Set<String> imageUrls = localStore.loadImages();
+                imageUrls.remove(imageUri.toString());
+                localStore.saveImages(imageUrls);
+            }
+        } else {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.germany);
+            Blurry.with(this)
+                    .radius(1)
+                    .sampling(2)
+                    .color(Color.argb(80, 0, 0, 0))
+                    .from(bitmap)
+                    .into(backgroundImage);
+        }
+
         // check registration
         final boolean isRegistered = localStore.loadIsRegistered();
         Log.d(TAG, "is registered ==> " + isRegistered);
 
-        // добавить затимнение/освитление картинки или сетку
-        // init background and motivation if user have already registered
+        // set motivation
         if (isRegistered) {
-            Set<String> images = localStore.loadImages();
-            Random random = new Random(new Date().getTime());
-            if (images != null) {
-                int randomNumber = random.nextInt(images.size() - 1);
-                String imageURI = (String) images.toArray()[randomNumber];
-                try {
-                    FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(imageURI));
-                    Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-                    frameLayout.setBackground(drawable);
-                } catch (IOException e) {
-                    Log.e(TAG, e.getMessage(), e.getCause());
-                }
-            }
+            ImageView logo = (ImageView) findViewById(R.id.logo_image);
+            TextView motivationText = (TextView) findViewById(R.id.motivation_text);
+            logo.setVisibility(View.GONE);
+            motivationText.setVisibility(View.VISIBLE);
+            motivationText.setText(localStore.loadMotivation());
         }
 
         // run delayed task
@@ -83,7 +104,7 @@ public class LoadingActivity extends AppCompatActivity {
             public boolean handleMessage(Message msg) {
                 // start next activity
                 if (isRegistered) {
-                    Intent mainIntent = new Intent(LoadingActivity.this, MainActivity.class);
+                    Intent mainIntent = new Intent(LoadingActivity.this, ProgressActivity.class);
                     startActivity(mainIntent);
                 } else {
                     Intent nameIntent = new Intent(LoadingActivity.this, NameActivity.class);

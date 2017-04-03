@@ -1,8 +1,6 @@
 package com.evedev.languageteacher.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,21 +10,31 @@ import android.widget.NumberPicker;
 import android.widget.TabHost;
 
 import com.evedev.languageteacher.R;
+import com.evedev.languageteacher.models.way.WayByTime;
+import com.evedev.languageteacher.models.way.WayByVisit;
+import com.evedev.languageteacher.services.LocalStore;
 
 /**
- * #5
+ * Fifth part of registration process. Allow users to chose
+ * one of learning way: by visit or by time.
  *
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * @author Anastasia.
  * @since 2/16/17.
  */
 public class WayActivity extends AppCompatActivity {
 
     public static final String TAG = "WayActivity";
 
+    // services
+    private LocalStore localStore;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_way);
+
+        // init services
+        localStore = new LocalStore(this);
 
         // button's listeners
         Button nextButton = (Button) findViewById(R.id.next_button);
@@ -37,17 +45,8 @@ public class WayActivity extends AppCompatActivity {
 
                 //check tab
                 int currentTab = tabHost.getCurrentTab();
-                Log.d(TAG, "current tab ==> " + String.valueOf(currentTab));
                 Log.d(TAG, "current tab tag ==> " + tabHost.getCurrentTabTag());
 
-                String preferencesName = getString(R.string.preferences_settings_file);
-                SharedPreferences sharedPreferences = getSharedPreferences(
-                        preferencesName,
-                        Context.MODE_PRIVATE
-                );
-                SharedPreferences.Editor sharedPreferencesEditor;
-                String wayToLearnKey = getString(R.string.way_to_learn_key);
-                int wayToLearnValue = Integer.parseInt(getString(R.string.way_to_learn_value));
                 switch (currentTab) {
                     // by time
                     case 0:
@@ -72,41 +71,15 @@ public class WayActivity extends AppCompatActivity {
                                 (NumberPicker) findViewById(R.id.go_bed_minute_picker);
                         int goBedMinute = goBedMinutePicker.getValue();
 
-                        // saving data // calculate me
-                        sharedPreferencesEditor = sharedPreferences.edit();
-                        String wordsPerHourKay = getString(R.string.words_per_hour_key);
-                        int wordsPerHourValue = Integer.parseInt(getString(R.string.words_per_hour_value));
-                        sharedPreferencesEditor.putInt(wordsPerHourKay, wordsPerHour);
-
-                        String getUpHourKey = getString(R.string.get_up_hour_key);
-                        int getUpHourValue = Integer.parseInt(getString(R.string.get_up_hour_value));
-                        sharedPreferencesEditor.putInt(getUpHourKey, getUpHour);
-
-                        String getUpMinuteKey = getString(R.string.get_up_minute_key);
-                        int getUpMinuteValue = Integer.parseInt(getString(R.string.get_up_minute_value));
-                        sharedPreferencesEditor.putInt(getUpMinuteKey, getUpMinute);
-
-                        String goBedHourKey = getString(R.string.go_bed_hour_key);
-                        int goBedHourValue = Integer.parseInt(getString(R.string.go_bed_hour_value));
-                        sharedPreferencesEditor.putInt(goBedHourKey, goBedHour);
-
-                        String goBedMinuteKey = getString(R.string.go_bed_minute_key);
-                        int goBedMinuteValue = Integer.parseInt(getString(R.string.go_bed_minute_value));
-                        sharedPreferencesEditor.putInt(goBedMinuteKey, goBedMinute);
-                        sharedPreferencesEditor.putInt(wayToLearnKey, 0);
-                        sharedPreferencesEditor.apply();
-
-                        // check saving
-                        int savedWordsPerHour = sharedPreferences.getInt(wordsPerHourKay, wordsPerHourValue);
-                        Log.d(TAG, "words per hour saved ==> " + savedWordsPerHour);
-                        int savedGetUpHour = sharedPreferences.getInt(getUpHourKey, getUpHourValue);
-                        Log.d(TAG, "get up hour saved ==> " + savedGetUpHour);
-                        int savedGetUpMinute = sharedPreferences.getInt(getUpMinuteKey, getUpMinuteValue);
-                        Log.d(TAG, "get up Minute saved ==> " + savedGetUpMinute);
-                        int savedGoBedHour = sharedPreferences.getInt(goBedHourKey, goBedHourValue);
-                        Log.d(TAG, "go bed hour saved ==> " + savedGoBedHour);
-                        int savedGoBedMinute = sharedPreferences.getInt(goBedMinuteKey, goBedMinuteValue);
-                        Log.d(TAG, "go bed minute saved ==> " + savedGoBedMinute);
+                        // saving data
+                        WayByTime wayByTime = WayByTime.newBuilder()
+                                .setWordsPerHour(wordsPerHour)
+                                .setGetUpHour(getUpHour)
+                                .setGetUpMinute(getUpMinute)
+                                .setGoBedHour(goBedHour)
+                                .setGoBedMinute(goBedMinute)
+                                .build();
+                        localStore.saveWay(wayByTime);
                         break;
                     // by visit
                     case 1:
@@ -115,33 +88,17 @@ public class WayActivity extends AppCompatActivity {
                                 (NumberPicker) findViewById(R.id.words_per_visit_picker);
                         int wordsPerVisit = wordsPerVisitPicker.getValue();
 
-                        // saving data // calculate me
-                        sharedPreferencesEditor = sharedPreferences.edit();
-                        String wordsPerVisitKey = getString(R.string.words_per_visit_key);
-                        int wordsPerVisitValue = Integer.parseInt(getString(R.string.words_per_visit_value));
-                        sharedPreferencesEditor.putInt(wordsPerVisitKey, wordsPerVisit);
-                        sharedPreferencesEditor.putInt(wayToLearnKey, 1);
-                        sharedPreferencesEditor.apply();
-
-                        // check saving
-                        int savedWordsPerVisit = sharedPreferences.getInt(wordsPerVisitKey, wordsPerVisitValue);
-                        Log.d(TAG, "words per visit saved ==> " + savedWordsPerVisit);
+                        // saving data
+                        WayByVisit wayByVisit = new WayByVisit(wordsPerVisit);
+                        localStore.saveWay(wayByVisit);
                         break;
                 }
 
-                int savedWordsPerVisit = sharedPreferences.getInt(wayToLearnKey, wayToLearnValue);
-                Log.d(TAG, "way to learn saved ==> " + savedWordsPerVisit);
+                // check saving
+                Log.d(TAG, "way saved ==> " + localStore.loadWay());
 
                 Intent motivationIntent = new Intent(WayActivity.this, AboutActivity.class);
                 startActivity(motivationIntent);
-            }
-        });
-
-        Button previousButton = (Button) findViewById(R.id.previous_button);
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }

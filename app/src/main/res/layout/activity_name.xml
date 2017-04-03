@@ -5,7 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/fragment_name" />
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:padding="10dp">
 
-    <include layout="@layout/fragment_bottom_direction" />
+        <TextView
+            android:id="@+id/wel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/activity_name_welcome_text"
+            android:textColor="@color/black"
+            android:textSize="15pt"
+            android:textStyle="bold" />
+
+        <include layout="@layout/name_fragment" />
+    </FrameLayout>
+
+    <fragment
+        android:id="@+id/bottom_direction_fragment"
+        android:name="com.evedev.languageteacher.fragments.BottomDirectionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

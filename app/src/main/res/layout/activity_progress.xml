@@ -5,7 +5,10 @@
     android:orientation="vertical">
 
 
-    <include layout="@layout/fragment_toolbar" />
+    <fragment android:name="com.evedev.languageteacher.fragments.ToolbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar_fragment" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +31,7 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textColor="@color/black"
-                android:text="Learn 6 new words!"
+                android:text="Learn (6) new words!"
                 android:textSize="15pt" />
 
             <LinearLayout

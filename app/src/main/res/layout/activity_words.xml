@@ -4,7 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/fragment_words" />
+    <fragment
+        android:id="@+id/words_fragment"
+        android:name="com.evedev.languageteacher.fragments.WordsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" />
 
-    <include layout="@layout/fragment_bottom_direction" />
+    <fragment
+        android:id="@+id/bottom_direction_fragment"
+        android:name="com.evedev.languageteacher.fragments.BottomDirectionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

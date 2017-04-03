@@ -1,8 +1,6 @@
 package com.evedev.languageteacher.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,16 +9,21 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 
 import com.evedev.languageteacher.R;
+import com.evedev.languageteacher.services.LocalStore;
 
 /**
- * #4
+ * Fourth step of registration. User sets number of words
+ * that he wants to learn.
  *
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * @author Anastasia.
  * @since 2/16/17.
  */
 public class WordsActivity extends AppCompatActivity {
 
     private static final String TAG = "WordsActivity";
+
+    // services
+    private LocalStore localStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,9 @@ public class WordsActivity extends AppCompatActivity {
 
         // init view's elements
         final NumberPicker wordsPerDayPicker = (NumberPicker) findViewById(R.id.words_per_day_picker);
-        wordsPerDayPicker.setMaxValue(200);
-        wordsPerDayPicker.setMinValue(0);
+
+        // init services
+        localStore = new LocalStore(this);
 
         // button's listeners
         Button nextButton = (Button) findViewById(R.id.next_button);
@@ -39,32 +43,14 @@ public class WordsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // save data
                 int wordsPerDay = wordsPerDayPicker.getValue();
-                String preferencesName = getString(R.string.preferences_settings_file);
-                String wordsPerDayKey = getString(R.string.words_per_day_key);
-                int wordsPerDayDefault = Integer.parseInt(getString(R.string.words_per_day_value));
-                SharedPreferences sharedPreferences = WordsActivity.this.getSharedPreferences(
-                        preferencesName,
-                        Context.MODE_PRIVATE
-                );
-                SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
-                sharedPreferencesEditor.putInt(wordsPerDayKey, wordsPerDay);
-                sharedPreferencesEditor.apply();
+                localStore.saveWordsPerDay(wordsPerDay);
 
                 // check saving
-                int savedWordsPerDay = sharedPreferences.getInt(wordsPerDayKey, wordsPerDayDefault);
-                Log.d(TAG, "number of words saved ==> " + savedWordsPerDay);
+                Log.d(TAG, "words saved ==> " + localStore.loadWordsPerDay());
 
                 // go to next activity
                 Intent motivationIntent = new Intent(WordsActivity.this, WayActivity.class);
                 startActivity(motivationIntent);
-            }
-        });
-
-        Button previousButton = (Button) findViewById(R.id.previous_button);
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }

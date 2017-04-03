@@ -1,11 +1,9 @@
-package com.evedev.languageteacher.models;
+package com.evedev.languageteacher.models.images;
 
 import android.net.Uri;
 
-import java.net.URI;
-
 /**
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * @author Anastasia.
  * @since 3/2/17.
  */
 public class GridButtonItem implements GridItem {

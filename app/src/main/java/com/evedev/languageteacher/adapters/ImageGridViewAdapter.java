@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +19,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.evedev.languageteacher.R;
-import com.evedev.languageteacher.models.GridButtonItem;
-import com.evedev.languageteacher.models.GridItem;
+import com.evedev.languageteacher.models.images.GridButtonItem;
+import com.evedev.languageteacher.models.images.GridItem;
+import com.evedev.languageteacher.services.LocalStore;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * Adapter for image grid in Images Fragment.
+ *
+ * @author Anastasia.
  * @since 2/28/17.
  */
 public class ImageGridViewAdapter extends ArrayAdapter {
+
+    private static final String TAG = "ImageGridViewAdapter";
+
+    // services
+    private LocalStore localStore;
 
     private Activity activity;
     private int layoutResourceId;
@@ -46,6 +56,7 @@ public class ImageGridViewAdapter extends ArrayAdapter {
         this.layoutResourceId = layoutResourceId;
         this.activity = activity;
         this.items = items;
+        localStore = new LocalStore(activity);
     }
 
     @Override
@@ -73,7 +84,10 @@ public class ImageGridViewAdapter extends ArrayAdapter {
                 Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 100, bitmapHeight, true);
                 imageView.setImageBitmap(scaledBitmap);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage(), e.getCause());
+                Set<String> imageUrls = localStore.loadImages();
+                imageUrls.remove(itemUri.toString());
+                localStore.saveImages(imageUrls);
             }
         }
 
@@ -101,7 +115,7 @@ public class ImageGridViewAdapter extends ArrayAdapter {
                 readPermission == PackageManager.PERMISSION_GRANTED) {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
-            Fragment fragment = activity.getFragmentManager().findFragmentById(R.id.image_fragment);
+            Fragment fragment = activity.getFragmentManager().findFragmentById(R.id.images_fragment);
             fragment.startActivityForResult(photoPickerIntent, 1);
         }
     }

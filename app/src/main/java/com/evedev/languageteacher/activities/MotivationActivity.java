@@ -16,7 +16,7 @@ import com.evedev.languageteacher.services.LocalStore;
 
 /**
  * Second part of registration chain.
- * In this activity user fills his motivation to study English.
+ * In this activity user fills his motivation to study German.
  *
  * @author Anastasia.
  * @since 2/16/17.
@@ -25,7 +25,11 @@ public class MotivationActivity extends AppCompatActivity {
 
     private static final String TAG = "MotivationActivity";
 
+    // services
     private LocalStore localStore;
+
+    // view's elements
+    private EditText reasonEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,27 +40,12 @@ public class MotivationActivity extends AppCompatActivity {
         localStore = new LocalStore(this);
 
         // init view's elements
-        final EditText reasonEditText = (EditText) findViewById(R.id.reason_edit_text);
-
-        // get name
         String name = localStore.loadName();
-
-        // init view's elements
         TextView helloText = (TextView) findViewById(R.id.hello_text);
         helloText.setText("Hello, " + name);
-
-        TextView motivationText = (TextView) findViewById(R.id.motivation_text);
-        motivationText.setText(name + ", what is motivate you to do it?");
+        reasonEditText = (EditText) findViewById(R.id.reason_edit_text);
 
         // button's listeners
-        Button previousButton = (Button) findViewById(R.id.previous_button);
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Button nextButton = (Button) findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

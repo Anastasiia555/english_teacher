@@ -27,6 +27,13 @@
         <item name="android:background">@drawable/button_navigation_blue</item>
     </style>
 
+    <style name="ButtonNavigationRedTheme">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/button_navigation_red</item>
+    </style>
+
     <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryDark">@color/blueDark</item>

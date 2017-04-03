@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">English Teacher</string>
+    <string name="app_name">German Teacher</string>
+
+    <!--
+    - Shared Preferences Keys.
+    -->
 
     <!-- Shared Preferences -->
     <string name="preferences_settings_file">Settings</string>
@@ -42,4 +46,36 @@
     <!-- Is Registered -->
     <string name="is_registered_key">isRegistered</string>
     <string name="is_registered_value">false</string>
+
+    <!--
+    - Activities strings
+    -->
+
+    <!-- Activity name -->
+    <string name="activity_name_what_is_your_name_text">What is your name?</string>
+    <string name="activity_name_default_value">name</string>
+    <string name="activity_name_welcome_text">Welcome</string>
+
+    <!-- Activity about -->
+    <string name="activity_about_how_work_app_text">How to work this app</string>
+    <string name="activity_about_srs_button">SRS</string>
+    <string name="activity_about_game_button">Game</string>
+    <string name="activity_about_vocabulary_button">vocabulary</string>
+    <string name="activity_about_options_button">options</string>
+
+    <!-- Activity motivation -->
+    <string name="activity_motivation_hello_text">Hello, [NAME]</string>
+    <string name="activity_motivation_before_you_start_text">Before you start to learn German, please spend 10 minutes for describe: for what you want learn this language and in which way.</string>
+    <string name="activity_motivation_what_is_motivate_text">[Name], what is motivate you to do it?</string>
+
+    <!-- Activity way -->
+    <string name="activity_way_choose_way_text">Choose way to learning</string>
+    <string name="activity_way_how_many_words_per_hour_text">How many words per hour you want to learn?</string>
+    <string name="activity_way_when_you_get_up_text">When you get up?</string>
+    <string name="activity_way_when_you_go_bed_text">When you go bed?</string>
+    <string name="activity_way_how_many_words_per_visit_text">How many words per one visit you want to learn?</string>
+
+    <!-- Activity words -->
+    <string name="activity_words_how_many_words_in_a_day_text">How many words you want to learn in a day?</string>
+    <string name="activity_images_name_add_pictures_text">[NAME], add pictures which you associate with learning English</string>
 </resources>

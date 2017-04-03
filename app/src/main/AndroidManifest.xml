@@ -15,7 +15,6 @@
 
         <activity
             android:name=".activities.LoadingActivity"
-            android:label="Loading"
             android:theme="@style/ToolbarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +24,8 @@
 
         <activity
             android:name=".activities.NameActivity"
-            android:theme="@style/ActionBarTheme" />
+            android:theme="@style/ActionBarTheme"
+            android:label="Name" />
 
         <activity
             android:name=".activities.MotivationActivity"
@@ -34,7 +34,7 @@
 
         <activity
             android:name=".activities.ImagesActivity"
-            android:label="Photos"
+            android:label="Motivation Images"
             android:theme="@style/ActionBarTheme" />
 
         <activity
@@ -44,7 +44,7 @@
 
         <activity
             android:name=".activities.WayActivity"
-            android:label="Way"
+            android:label="Learning Way"
             android:theme="@style/ActionBarTheme" />
 
         <activity
@@ -53,19 +53,23 @@
             android:theme="@style/ActionBarTheme" />
 
         <activity
-            android:name=".activities.PhotoDetailsActivity"
-            android:label="Main"
+            android:name=".activities.ImageDetailsActivity"
+            android:label="View Image"
             android:theme="@style/ActionBarTheme" />
 
         <activity
-            android:name=".activities.MainActivity"
-            android:label="Main"
+            android:name=".activities.ProgressActivity"
+            android:label="Progress"
             android:theme="@style/ToolbarTheme" />
 
         <activity
-            android:name=".activities.UserActivity"
-            android:label="User Settings"
-            android:theme="@style/ActionBarTheme" />
-    </application>
+            android:name=".activities.LearningSettingsActivity"
+            android:label="Progress"
+            android:theme="@style/ToolbarTheme" />
 
+        <activity
+            android:name=".activities.UserSettingsActivity"
+            android:label="User Settings"
+            android:theme="@style/ToolbarTheme" />
+    </application>
 </manifest>

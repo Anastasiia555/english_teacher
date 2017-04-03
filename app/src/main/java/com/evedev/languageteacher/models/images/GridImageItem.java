@@ -1,9 +1,9 @@
-package com.evedev.languageteacher.models;
+package com.evedev.languageteacher.models.images;
 
 import android.net.Uri;
 
 /**
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * @author Anastasia.
  * @since 3/2/17.
  */
 

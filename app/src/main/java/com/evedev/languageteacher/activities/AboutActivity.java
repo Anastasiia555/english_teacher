@@ -7,35 +7,36 @@ import android.view.View;
 import android.widget.Button;
 
 import com.evedev.languageteacher.R;
+import com.evedev.languageteacher.services.LocalStore;
 
 /**
- * #6
+ * Last activity of registration sequence. Contains information for reference.
  *
- * @author Alexander Eveler, alexander.eveler@gmail.com
+ * @author Anastasia.
  * @since 2/16/17.
  */
 public class AboutActivity extends AppCompatActivity {
+
+    // services
+    private LocalStore localStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        // init services
+        localStore = new LocalStore(this);
+
         // button's listeners
         Button nextButton = (Button) findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent motivationIntent = new Intent(AboutActivity.this, MainActivity.class);
-                startActivity(motivationIntent);
-            }
-        });
+                localStore.saveIsRegistered(true);
 
-        Button previousButton = (Button) findViewById(R.id.previous_button);
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+                Intent motivationIntent = new Intent(AboutActivity.this, ProgressActivity.class);
+                startActivity(motivationIntent);
             }
         });
     }
